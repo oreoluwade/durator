@@ -4,7 +4,6 @@ import { calculateMoment } from './util/helpers';
 export const CurrentTime = () => {
     const [dateTime, setDateTime] = useState({});
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
         let interval = null;
         interval = setInterval(() => {
