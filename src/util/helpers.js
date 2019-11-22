@@ -6,12 +6,9 @@ export const calculateMoment = () => {
         (today.getMonth() + 1) +
         '-' +
         today.getDate();
-    const time =
-        today.getHours() +
-        ':' +
-        normalizeSegment(today.getMinutes()) +
-        ':' +
-        normalizeSegment(today.getSeconds());
+    const time = `${today.getHours()}:${normalizeSegment(
+        today.getMinutes()
+    )}:${normalizeSegment(today.getSeconds())}`;
 
     return {
         date,
