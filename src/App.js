@@ -3,7 +3,7 @@ import { CurrentTime } from './current-time';
 
 const App = () => {
     return (
-        <div>
+        <div className="root">
             <CurrentTime />
         </div>
     );

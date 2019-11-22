@@ -1,0 +1,34 @@
+@font-face {
+    font-family: 'Digital';
+    src: local('Digital'), url(../fonts/digital-7.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'Digital Mono';
+    src: local('Digital Mono'), url(../fonts/digital-7-mono.ttf) format('truetype');
+}
+
+body {
+  margin: 0;
+  font-family: Menlo, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.root {
+    text-align: center;
+}
+
+.ct {
+    &__date {
+        font-size: 4rem;
+    }
+
+    &__time {
+        font-size: 8rem;
+        font-family: Digital;
+        letter-spacing: 2px;
+    }
+}
