@@ -6,8 +6,12 @@ export const CurrentTime = () => {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
-        setDateTime(calculateMoment());
-    });
+        let interval = null;
+        interval = setInterval(() => {
+            setDateTime(calculateMoment());
+        }, 1000);
+        return () => clearInterval(interval);
+    }, []);
 
     return (
         <div className="ct">
