@@ -1,11 +1,12 @@
 import React from 'react';
+import { Link } from '@reach/router';
 
 const Sidebar = () => {
   return (
     <aside className="sb">
-      <p className="sb-intro">Features</p>
-      <p className="sb-list">Carpe Diem</p>
-      <p className="sb__item">Lorem Ipsum</p>
+      <Link to="/weekday-calculator" className="button sb__wd">
+        What day of the week was I born?
+      </Link>
     </aside>
   );
 };

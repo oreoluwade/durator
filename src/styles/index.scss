@@ -54,4 +54,25 @@ body {
   width: 30vw;
   position: sticky;
   background: rgb(201, 162, 90);
+  padding: 1rem;
+
+  &__wd {
+    width: 80%;
+    margin-top: 2rem;
+  }
+}
+
+.button {
+  text-decoration: none;
+  background: blue;
+  border-radius: 1rem;
+  color: azure;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    box-shadow: 0.2rem 0.2rem 0.3rem rgba(0, 0, 0, 0.4);
+  }
 }

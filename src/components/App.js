@@ -1,13 +1,14 @@
 import React from 'react';
-import { CurrentTime } from './current-time';
-import Sidebar from './sidebar';
+import { Router } from '@reach/router';
+import Home from './home';
+import WeekdayCalculator from './weekday-calculator';
 
 const App = () => {
   return (
-    <div className="root">
-      <CurrentTime />
-      <Sidebar />
-    </div>
+    <Router>
+      <Home path="/" />
+      <WeekdayCalculator path="/weekday-calculator" />
+    </Router>
   );
 };
 
