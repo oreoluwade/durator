@@ -19,11 +19,15 @@ body {
 
 .root {
     text-align: center;
+    display: flex;
 }
 
 .ct {
+    width: 70vw;
     &__date {
         font-size: 4rem;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
     }
 
     &__time {
@@ -31,6 +35,23 @@ body {
         font-family: "Digital Mono";
         font-stretch: expanded;
         letter-spacing: 2px;
-        color: rgb(92, 16, 16)
+        color: rgb(92, 16, 16);
+        margin-top: 1rem;
+        margin-bottom: 3rem;
     }
+
+    &__weekday {
+      font-size: 2rem;
+      color: blue;
+      margin-top: 0;
+    }
+}
+
+.sb {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 30vw;
+  position: sticky;
+  background: rgb(201, 162, 90);
 }
