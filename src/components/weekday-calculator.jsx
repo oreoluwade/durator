@@ -18,9 +18,9 @@ const WeekdayCalculator = () => {
       <p>Enter your birth date below</p>
       <form className="wd-date-group">
         <div className="wd-field">
-          <select>
+          <select className="wd-month-selector">
             {MONTH_OPTIONS.map((mo, index) => (
-              <option value="mo" key={index}>
+              <option value="mo" key={index} className="wd-option">
                 {mo}
               </option>
             ))}
@@ -47,6 +47,9 @@ const WeekdayCalculator = () => {
           />
           <label htmlFor="year">Year</label>
         </div>
+        <button type="button" className="wd-submit">
+          SUBMIT
+        </button>
       </form>
     </div>
   );

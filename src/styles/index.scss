@@ -96,4 +96,32 @@ body {
     display: flex;
     flex-direction: column;
   }
+
+  &-month-selector {
+    height: 2.5rem;
+    width: 8rem;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+
+  &-option {
+    width: 4rem;
+  }
+
+  &-submit {
+    height: 2.7rem;
+    width: 8rem;
+
+    border-radius: 0.2rem;
+    border: none;
+    font-size: 1rem;
+    font-weight: 600;
+
+    background-color: #316aff;
+    color: #fff;
+
+    letter-spacing: 2px;
+
+    box-shadow: rgba(39, 88, 184, 0.5) 0px 10px 30px -8px;
+  }
 }
