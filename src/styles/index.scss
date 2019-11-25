@@ -172,3 +172,47 @@ body {
       }
   }
 }
+
+.dd {
+    display: flex;
+    justify-content: center;
+
+    padding: 2rem;
+
+    text-align: center;
+
+    &-epoch {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 10rem;
+
+        &__input_group {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        &_input {
+            width: 3rem;
+            height: 1.5rem;
+            border: 2px solid black;
+
+            &__year {
+                width: 4rem;
+            }
+        }
+
+        &_divider {
+            display: flex;
+            margin-left: 0.25rem;
+            margin-right: 0.25rem;
+
+        }
+    }
+
+    &-divider {
+        width: 10rem;
+    }
+}
