@@ -78,34 +78,55 @@ body {
 }
 
 .wd {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
   padding: 2rem;
 
   &-date-group {
     display: flex;
-
   }
 
   &-input {
-    font-size: 2rem;
-    background-image: none;
     width: 5rem;
+    height: 2.3rem;
+
+    margin-bottom: 0.5rem;
+
+    letter-spacing: 2px;
+    font-size: 1.3rem;
   }
 
   &-field {
-    margin-right: 2rem;
-    display: flex;
-    flex-direction: column;
+      display: flex;
+      flex-direction: column;
+
+      margin-right: 2rem;
   }
 
-  &-month-selector {
-    height: 2.5rem;
-    width: 8rem;
+  &-selector {
+    height: 2.7rem;
+    width: 10rem;
+
+    margin-bottom: 0.5rem;
+
     font-size: 1rem;
     font-weight: bold;
+
+    &__disabled {
+        color: grey;
+    }
   }
 
   &-option {
     width: 4rem;
+    margin-bottom: 0.4rem;
+
+    &__disabled {
+        color: grey;
+    }
   }
 
   &-submit {
@@ -114,6 +135,8 @@ body {
 
     border-radius: 0.2rem;
     border: none;
+    outline: none;
+
     font-size: 1rem;
     font-weight: 600;
 
@@ -123,5 +146,29 @@ body {
     letter-spacing: 2px;
 
     box-shadow: rgba(39, 88, 184, 0.5) 0px 10px 30px -8px;
+
+    &:disabled {
+        background-color: grey;
+        box-shadow: none;
+    }
+
+    &:hover {
+        font-size: 1.2rem;
+        box-shadow: rgba(33, 94, 218, 0.5) 3px 10px 50px -4px;
+    }
+  }
+
+  &-result {
+      color: blue;
+      letter-spacing: 4px;
+      font-size: 4rem;
+
+      &_calculated {
+          text-transform: uppercase;
+
+          &:hover {
+              font-size: 4.5rem;
+          }
+      }
   }
 }
