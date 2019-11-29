@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { MONTH_OPTIONS, getDayOptions } from '../util/select-options';
+import {
+    MONTH_OPTIONS,
+    getDayOptions,
+    getYearOptions
+} from '../util/select-options';
 import { checkYearValidity, getDayString } from '../util/helpers';
 
 const WeekdayCalculator = () => {
@@ -49,62 +53,102 @@ const WeekdayCalculator = () => {
             <p>Enter your birth date below</p>
             <form className="wd-date-group">
                 <div className="wd-field">
-                    <input
-                        className="wd-input"
-                        type="text"
-                        placeholder="YYYY"
-                        value={date.year}
-                        name="year"
-                        onChange={handleInputChange}
-                    />
-                    <label htmlFor="year">Year</label>
-                </div>
-                <div className="wd-field">
-                    <select
-                        className={
-                            !date.month
-                                ? 'wd-selector wd-selector__disabled'
-                                : 'wd-selector'
-                        }
-                        onChange={handleInputChange}
-                        name="month"
-                    >
-                        <option value="" className="wd-option">
-                            Select a month
-                        </option>
-                        {MONTH_OPTIONS.map(mo => (
-                            <option
-                                value={mo.num}
-                                key={mo.str}
-                                className="wd-option"
-                            >
-                                {mo.str}
+                    <div className="wd-field-select">
+                        <select
+                            className={
+                                !date.day
+                                    ? 'wd-selector wd-selector__disabled'
+                                    : 'wd-selector'
+                            }
+                            onChange={handleInputChange}
+                            name="day"
+                            disabled={!date.month}
+                        >
+                            <option value="" className="wd-option">
+                                Select a day
                             </option>
-                        ))}
-                    </select>
+                            {getDayOptions(date.month, date.year).map(day => (
+                                <option
+                                    value={day}
+                                    key={day}
+                                    className="wd-option"
+                                >
+                                    {day}
+                                </option>
+                            ))}
+                        </select>
+                        {/* <img
+                            src="/expand.png"
+                            alt="expand"
+                            className="wd-field-select-expand"
+                        /> */}
+                    </div>
+                    <label htmlFor="day">Day</label>
+                </div>
+
+                <div className="wd-field">
+                    <div className="wd-field-select">
+                        <select
+                            className={
+                                !date.month
+                                    ? 'wd-selector wd-selector__disabled'
+                                    : 'wd-selector'
+                            }
+                            onChange={handleInputChange}
+                            name="month"
+                        >
+                            <option value="" className="wd-option">
+                                Select a month
+                            </option>
+                            {MONTH_OPTIONS.map(mo => (
+                                <option
+                                    value={mo.num}
+                                    key={mo.str}
+                                    className="wd-option"
+                                >
+                                    {mo.str}
+                                </option>
+                            ))}
+                        </select>
+                        {/* <img
+                            src="/expand.png"
+                            alt="expand"
+                            className="wd-field-select-expand"
+                        /> */}
+                    </div>
                     <label htmlFor="month">Month</label>
                 </div>
                 <div className="wd-field">
-                    <select
-                        className={
-                            !date.day
-                                ? 'wd-selector wd-selector__disabled'
-                                : 'wd-selector'
-                        }
-                        onChange={handleInputChange}
-                        name="day"
-                        disabled={!date.month}
-                    >
-                        <option value="" className="wd-option">
-                            Select a day
-                        </option>
-                        {getDayOptions(date.month, date.year).map(day => (
-                            <option value={day} key={day} className="wd-option">
-                                {day}
+                    <div className="wd-field-select">
+                        <select
+                            className={
+                                !date.year
+                                    ? 'wd-selector wd-selector__disabled'
+                                    : 'wd-selector'
+                            }
+                            onChange={handleInputChange}
+                            name="year"
+                        >
+                            <option value="" className="wd-option">
+                                Select a year
                             </option>
-                        ))}
-                    </select>
-                    <label htmlFor="day">Day</label>
+                            {getYearOptions().map(year => (
+                                <option
+                                    value={year}
+                                    key={year}
+                                    className="wd-option"
+                                >
+                                    {year}
+                                </option>
+                            ))}
+                        </select>
+                        {/* <img
+                            src="/expand.png"
+                            alt="expand"
+                            className="wd-field-select-expand"
+                        /> */}
+                    </div>
+                    <label htmlFor="year">Year</label>
                 </div>
 
                 <button

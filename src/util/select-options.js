@@ -49,3 +49,12 @@ export const getDayOptions = (month, year) => {
 
     return options;
 };
+
+export const getYearOptions = () => {
+    let years = [];
+    for (let y = 1; y <= 120; y += 1) {
+        years.push(new Date().getFullYear() - y + 1);
+    }
+
+    return years;
+};
