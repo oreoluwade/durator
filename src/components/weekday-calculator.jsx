@@ -1,51 +1,56 @@
 import React, { useState, useEffect } from 'react';
 import {
     MONTH_OPTIONS,
-    getDayOptions,
+    calculateDayOptions,
     getYearOptions
 } from '../util/select-options';
-import { checkYearValidity, getDayString } from '../util/helpers';
+import { getDayString } from '../util/helpers';
 
 const WeekdayCalculator = () => {
-    const [date, setDate] = useState({ day: '', month: '', year: '' });
+    const [day, setDay] = useState('Select a day');
+    const [month, setMonth] = useState('');
+    const [year, setYear] = useState('');
+    const [dayOptions, setDayOptions] = useState([]);
     const [inputIsValid, setInputIsValid] = useState(false);
     const [result, setResult] = useState(null);
 
     useEffect(() => {
-        const inputItemsAreValid = Object.values(date).every(item =>
-            Boolean(item)
-        );
+        const inputItems = [day, month, year];
+        const inputItemsAreValid = inputItems.every(item => Boolean(item));
 
         setInputIsValid(inputItemsAreValid);
-    }, [date]);
+    }, [day, month, year]);
 
-    const handleInputChange = e => {
-        e.persist();
-        const numOfCharsIsValid = e.target.value.length <= 4;
+    useEffect(() => {
+        setDayOptions(calculateDayOptions(month, year));
+        console.log('Everytime', daysInMonth(month, year), Number(day));
 
-        if (
-            e.target.name === 'year' &&
-            !checkYearValidity(e.target.value) &&
-            numOfCharsIsValid
-        ) {
-            return setDate({
-                ...date,
-                year: e.target.value.slice(0, e.target.value.length - 1)
-            });
-        } else {
-            if (numOfCharsIsValid) {
-                setDate({ ...date, [e.target.name]: e.target.value });
-                console.log('Date', date);
-            }
+        if (daysInMonth(month, year) < Number(day)) {
+            setDay(String(daysInMonth(month, year)));
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [month, year]);
+
+    const daysInMonth = (month, year) => {
+        return new Date(year, month, 0).getDate();
+    };
+
+    const handleDayChange = e => {
+        setDay(e.target.value);
+    };
+
+    const handleMonthChange = e => {
+        setMonth(e.target.value);
+    };
+
+    const handleYearChange = e => {
+        setYear(e.target.value);
     };
 
     const getDayOfWeek = () => {
-        const constructedDate = new Date(
-            `${date.year}-${date.month}-${date.day}`
-        );
+        const constructedDate = new Date(`${year}-${month}-${day}`);
 
-        setResult(getDayString(new Date(constructedDate)));
+        setResult(getDayString(constructedDate));
     };
 
     return (
@@ -56,32 +61,26 @@ const WeekdayCalculator = () => {
                     <div className="wd-field-select">
                         <select
                             className={
-                                !date.day
+                                isNaN(Number(day))
                                     ? 'wd-selector wd-selector__disabled'
                                     : 'wd-selector'
                             }
-                            onChange={handleInputChange}
+                            onChange={handleDayChange}
                             name="day"
-                            disabled={!date.month}
                         >
-                            <option value="" className="wd-option">
-                                Select a day
+                            <option value={day} className="wd-option">
+                                {day}
                             </option>
-                            {getDayOptions(date.month, date.year).map(day => (
+                            {dayOptions.map(item => (
                                 <option
-                                    value={day}
-                                    key={day}
+                                    value={item}
+                                    key={item}
                                     className="wd-option"
                                 >
-                                    {day}
+                                    {item}
                                 </option>
                             ))}
                         </select>
-                        {/* <img
-                            src="/expand.png"
-                            alt="expand"
-                            className="wd-field-select-expand"
-                        /> */}
                     </div>
                     <label htmlFor="day">Day</label>
                 </div>
@@ -90,11 +89,11 @@ const WeekdayCalculator = () => {
                     <div className="wd-field-select">
                         <select
                             className={
-                                !date.month
+                                !month
                                     ? 'wd-selector wd-selector__disabled'
                                     : 'wd-selector'
                             }
-                            onChange={handleInputChange}
+                            onChange={handleMonthChange}
                             name="month"
                         >
                             <option value="" className="wd-option">
@@ -110,11 +109,6 @@ const WeekdayCalculator = () => {
                                 </option>
                             ))}
                         </select>
-                        {/* <img
-                            src="/expand.png"
-                            alt="expand"
-                            className="wd-field-select-expand"
-                        /> */}
                     </div>
                     <label htmlFor="month">Month</label>
                 </div>
@@ -122,11 +116,11 @@ const WeekdayCalculator = () => {
                     <div className="wd-field-select">
                         <select
                             className={
-                                !date.year
+                                !year
                                     ? 'wd-selector wd-selector__disabled'
                                     : 'wd-selector'
                             }
-                            onChange={handleInputChange}
+                            onChange={handleYearChange}
                             name="year"
                         >
                             <option value="" className="wd-option">
@@ -142,11 +136,6 @@ const WeekdayCalculator = () => {
                                 </option>
                             ))}
                         </select>
-                        {/* <img
-                            src="/expand.png"
-                            alt="expand"
-                            className="wd-field-select-expand"
-                        /> */}
                     </div>
                     <label htmlFor="year">Year</label>
                 </div>
@@ -164,7 +153,7 @@ const WeekdayCalculator = () => {
             {result && (
                 <h1 className="wd-result">
                     You were born on a{' '}
-                    <span className="wd-result_calculated">Friday</span>
+                    <span className="wd-result_calculated">{result}</span>
                 </h1>
             )}
         </div>

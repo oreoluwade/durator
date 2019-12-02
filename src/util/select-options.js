@@ -33,21 +33,20 @@ const thirtyOneDayMonths = [
 
 const thirtyDayMonths = ['April', 'June', 'September', 'November'];
 
-export const getDayOptions = (month, year) => {
-    let options;
-    if (thirtyOneDayMonths.includes(month)) {
-        options = createFiniteArray(1, 31, 1);
+export const calculateDayOptions = (month, year) => {
+    if (month === '' && year === '') {
+        return createFiniteArray(1, 31, 1);
+    } else if (thirtyOneDayMonths.includes(month)) {
+        return createFiniteArray(1, 31, 1);
     } else if (thirtyDayMonths.includes(month)) {
-        options = createFiniteArray(1, 30, 1);
+        return createFiniteArray(1, 30, 1);
     } else {
         if (year % 4 === 0) {
-            options = createFiniteArray(1, 29, 1);
+            return createFiniteArray(1, 29, 1);
         } else {
-            options = createFiniteArray(1, 28, 1);
+            return createFiniteArray(1, 28, 1);
         }
     }
-
-    return options;
 };
 
 export const getYearOptions = () => {

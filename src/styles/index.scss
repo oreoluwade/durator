@@ -121,16 +121,8 @@ body {
         //   background-color: white;
           background-image: url('/expand.png');
           background-repeat: no-repeat;
-          background-position: 98% 50%;
-          background-size: 1.1rem 1.2rem;
-
-          &-expand {
-            width: 1.2rem;
-            height: 1.2rem;
-            // filter: invert(0.9) saturate(200%);
-            filter: invert(48%) sepia(13%) saturate(3207%) hue-rotate(130deg) brightness(95%) contrast(80%);
-            pointer-events: none;
-          }
+          background-position: 95% 50%;
+          background-size: 0.9rem 1rem;
       }
   }
 
@@ -158,6 +150,7 @@ body {
   &-option {
     width: 4rem;
     margin-bottom: 0.4rem;
+    background-color: white;
 
     &__disabled {
         color: grey;
@@ -168,7 +161,7 @@ body {
     height: 2.7rem;
     width: 8rem;
 
-    border-radius: 0.2rem;
+    border-radius: 0.8rem;
     border: none;
     outline: none;
 

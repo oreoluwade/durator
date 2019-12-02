@@ -80,22 +80,3 @@ export const getDaySuffix = day => {
 
     return suffix;
 };
-
-export const checkYearValidity = yearValue => {
-    if (
-        (yearValue.startsWith('1') || yearValue.startsWith('2')) &&
-        !isNaN(yearValue)
-    ) {
-        if (
-            yearValue.startsWith('2') &&
-            yearValue.length > 1 &&
-            yearValue[1] !== '0'
-        ) {
-            return false;
-        } else {
-            return true;
-        }
-    } else {
-        return false;
-    }
-};
