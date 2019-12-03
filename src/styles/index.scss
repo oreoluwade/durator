@@ -118,11 +118,11 @@ body {
           border: 2px solid #1a9790;
           border-radius: 9rem;
 
-        //   background-color: white;
           background-image: url('/expand.png');
           background-repeat: no-repeat;
           background-position: 95% 50%;
           background-size: 0.9rem 1rem;
+          background-color: green;
       }
   }
 
@@ -202,12 +202,22 @@ body {
 }
 
 .dd {
-    display: flex;
-    justify-content: center;
+    &-root {
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 
-    padding: 2rem;
+    &-dates {
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
-    text-align: center;
+        padding: 2rem;
+
+        text-align: center;
+    }
 
     &-epoch {
         display: flex;
@@ -233,14 +243,47 @@ body {
         }
 
         &_divider {
-            display: flex;
-            margin-left: 0.25rem;
-            margin-right: 0.25rem;
+            height: 50%;
+            width: 8rem;
 
+            border-bottom: 2px solid #1a9790;
+            margin-left: 0.3rem;
+            margin-right: 0.3rem;
         }
     }
 
     &-divider {
         width: 10rem;
+    }
+
+    &-submit {
+        background-color: #1a9790;
+        height: 2.7rem;
+
+        border-radius: 0.8rem;
+        border: none;
+        outline: none;
+
+        font-size: 1rem;
+        font-weight: 600;
+
+        color: #fff;
+
+        letter-spacing: 2px;
+
+        box-shadow: rgba(31, 78, 73, 0.5) 0px 10px 30px -8px;
+
+        &:disabled {
+            background-color: grey;
+            box-shadow: none;
+        }
+
+        &:hover {
+            font-size: 1.2rem;
+            width: 15rem;
+
+            box-shadow: rgba(31, 78, 73, 0.5) 3px 10px 50px -4px;
+        }
+        width: 13rem;
     }
 }

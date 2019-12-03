@@ -1,0 +1,57 @@
+.dg {
+    &-root {
+
+    }
+
+    &-label {
+
+    }
+
+    &-select {
+
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;       /* Remove default arrow */
+        border: none;
+        width: 10rem;
+        font-size: 1rem;
+        background: transparent;
+        outline: none;
+
+        &_group {
+            display: flex;
+            align-items: center;
+        }
+
+        &_label {
+            width: 10rem;
+            height: 2rem;
+
+            border: 1px solid #1a9790;
+            border-radius: 8rem;
+
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
+
+            display: flex;
+            align-items: center;
+
+            background-image: url('/dropdown.svg');   /* Add custom arrow */
+            background-position: 95% 50%;
+            background-repeat: no-repeat;
+            background-size: 0.8rem 1rem;
+            // filter: invert(48%) sepia(13%) saturate(3207%) hue-rotate(130deg) brightness(95%) contrast(80%);
+
+            overflow: hidden;
+        }
+    }
+
+    &-divider {
+        height: 50%;
+        width: 1rem;
+
+        border-bottom: 2px solid #1a9790;
+        margin-left: 0.3rem;
+        margin-right: 0.3rem;
+    }
+}
