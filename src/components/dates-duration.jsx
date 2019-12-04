@@ -28,7 +28,7 @@ const DatesDuration = () => {
     });
     const [endDate, setEndDate] = useState({ day: '', month: '', year: '' });
     const [disabled, setDisabled] = useState(true);
-    const [daysDifference, setDaysDifference] = useState('');
+    const [timeDifference, setTimeDifference] = useState('');
 
     useEffect(() => {
         setOptionsDataOne({
@@ -51,10 +51,12 @@ const DatesDuration = () => {
     }, [startDate, endDate]);
 
     const handleStartDateChange = e => {
+        setTimeDifference('');
         setStartDate({ ...startDate, [e.target.name]: e.target.value });
     };
 
     const handleEndDateChange = e => {
+        setTimeDifference('');
         setEndDate({ ...endDate, [e.target.name]: e.target.value });
     };
 
@@ -77,33 +79,39 @@ const DatesDuration = () => {
 
         const epoch = (utc1 - utc2) / MILLISECONDS_PER_DAY;
 
-        console.log('Epoch', epoch, 1);
+        const daysAfterExtractingYears = Math.abs(epoch % 365);
 
         if (Math.abs(epoch / 365) > 1) {
-            const daysAfterExtractingYears = Math.abs(epoch % 365);
-            console.log(daysAfterExtractingYears, epoch / 365);
             if (daysAfterExtractingYears < 30) {
                 const monthsInRemainingDays = Math.abs(
                     Math.floor(daysAfterExtractingYears / 30)
                 );
                 const daysRemaining = daysAfterExtractingYears % 30;
-                setDaysDifference(
+                setTimeDifference(
                     `${Math.floor(
                         Math.abs(epoch / 365)
                     )} years, ${monthsInRemainingDays} months, ${daysRemaining} days`
                 );
             } else {
-                setDaysDifference(
+                setTimeDifference(
                     `${Math.floor(
                         Math.abs(epoch / 365)
                     )} months, ${daysAfterExtractingYears} days`
                 );
             }
         } else {
-            setDaysDifference(`${Math.floor(Math.abs(epoch))} days`);
+            if (daysAfterExtractingYears > 30) {
+                const monthsInRemainingDays = Math.abs(
+                    Math.floor(daysAfterExtractingYears / 30)
+                );
+                const daysRemaining = daysAfterExtractingYears % 30;
+                setTimeDifference(
+                    `${monthsInRemainingDays} months, ${daysRemaining} days`
+                );
+            } else {
+                setTimeDifference(`${Math.floor(Math.abs(epoch))} days`);
+            }
         }
-
-        // setDaysDifference(Math.abs(difference));
     };
 
     const allTargetsFilled = obj => {
@@ -133,7 +141,7 @@ const DatesDuration = () => {
                     handleDateChange={handleEndDateChange}
                 />
             </div>
-            {daysDifference && <h1>{daysDifference}</h1>}
+            {timeDifference && <h1>{timeDifference}</h1>}
         </div>
     );
 };
